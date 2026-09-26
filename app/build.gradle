@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Release signing data lives in keystore.properties (gitignored) next to the
+// keystore file. Without it the release build produces an unsigned APK.
+def keystorePropsFile = rootProject.file('keystore.properties')
+def keystoreProps = new Properties()
+if (keystorePropsFile.exists()) {
+    keystorePropsFile.withInputStream { keystoreProps.load(it) }
+}
+
+android {
+    namespace 'com.local.identitycode'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.local.identitycode'
+        minSdk 24
+        targetSdk 35
+        versionCode 9
+        versionName '1.0.8'
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropsFile.exists()) {
+                storeFile rootProject.file(keystoreProps.getProperty('storeFile', 'identitycode.keystore'))
+                storePassword keystoreProps.getProperty('storePassword')
+                keyAlias keystoreProps.getProperty('keyAlias')
+                keyPassword keystoreProps.getProperty('keyPassword')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (keystorePropsFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        // lint-vital for release would fetch com.android.tools.lint from the
+        // network; builds here are offline, so skip it.
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+}
+
+configurations.configureEach {
+    resolutionStrategy {
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+        force 'androidx.core:core:1.12.0'
+        force 'androidx.core:core-ktx:1.12.0'
+    }
+}

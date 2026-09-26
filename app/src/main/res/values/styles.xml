@@ -1,0 +1,19 @@
+<resources>
+    <!-- SwitchMaterial 及 ?attr/colorSecondary 要求主题继承自 Theme.MaterialComponents -->
+    <style name="Theme.IdentityCode" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#F7F8FA</item>
+        <item name="android:navigationBarColor">#F7F8FA</item>
+        <item name="android:windowActionModeOverlay">true</item>
+
+        <!-- 保持 App 原有的品牌红，避免用上 Material 默认的紫/青强调色 -->
+        <item name="android:colorAccent">#E83342</item>
+        <item name="colorPrimary">#E83342</item>
+        <item name="colorPrimaryVariant">#C42A37</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#E83342</item>
+        <item name="colorSecondaryVariant">#C42A37</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+    </style>
+</resources>

@@ -1,0 +1,16 @@
+buildscript {
+    configurations.classpath {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'org.jetbrains.kotlin' &&
+                    details.requested.name in ['kotlin-stdlib', 'kotlin-stdlib-jdk7',
+                                               'kotlin-stdlib-jdk8', 'kotlin-reflect']) {
+                details.useVersion '1.9.20'
+                details.because 'Use the Kotlin runtime already available in the local Gradle cache'
+            }
+        }
+    }
+}
+
+plugins {
+    id 'com.android.application' version '8.2.2' apply false
+}

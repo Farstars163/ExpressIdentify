@@ -1,0 +1,38 @@
+# Gradle / Android build outputs
+.gradle/
+build/
+**/build/
+local.properties
+
+# IDE
+.idea/
+**/.idea/
+*.iml
+captures/
+.cxx/
+.externalNativeBuild/
+
+# Signing material — never commit the keystore or its passwords
+identitycode.keystore
+keystore.properties
+
+# Packaged binaries — except the published release APK
+*.apk
+*.aab
+!/releases/*.apk
+
+# Reverse-engineering / scratch artifacts kept at the repo root (not part of the app)
+/*.png
+/*.jpg
+/*.xml
+/*.txt
+/*.html
+/*.js
+/*.jar
+/*.log
+
+# Separate projects & tooling in this working copy (not part of this repo)
+/litiaotiao/
+/tools/
+/.claude/
+/.agents/

@@ -20,6 +20,8 @@
 
 **[⬇ ExpressIdentify-1.0.8.apk](releases/ExpressIdentify-1.0.8.apk)** （`versionCode 9` · minSdk 24 · 已用发布签名签好）
 
+也可以从 [Releases](https://github.com/Farstars163/ExpressIdentify/releases) 下载同一份 APK。
+
 > 若系统提示「禁止安装未知来源应用」，允许本应用安装来源即可。
 
 ## 构建（可选）

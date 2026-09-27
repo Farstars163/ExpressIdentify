@@ -8,11 +8,11 @@
 
 ## 特性
 
-- **一键直达** —— 拼多多卡片用 `pinduoduo://` 深链打开多多取件身份码页；淘宝卡片按「HTTPS 页面 → `taobao://` scheme → 复制链接」三级回退，总有一种方式能打开。
+- **一键直达** —— 拼多多卡片直达多多取快递页；淘宝卡片直达身份码页面。
 - **永远是实时码** —— 每次点击都重新进入对应页面，展示的是当前登录账号此刻生成的动态身份码，不存在过期截图。
 - **零权限、零网络请求** —— 不申请任何 Android 权限，不集成第三方 SDK，应用自身不联网，也不保存账号 Cookie、Token 或身份码。
 - **长按复制** —— 长按任意卡片即可复制对应的原始站点链接，方便贴到别处打开。
-- **轻量** —— 纯 Java、单 Activity、无 Kotlin 运行时依赖，APK 约 5 MB。
+- **轻量** —— 单 Activity、无 Kotlin 运行时依赖，APK 约 5 MB。
 
 ## 安装
 
@@ -38,7 +38,7 @@ APK 输出：`app/build/outputs/apk/debug/app-debug.apk`
 
 ### Release 签名
 
-签名用的 keystore 与密码**不入库**。要打签名 release，请在仓库根目录放置：
+要打签名 release，请在仓库根目录放置：
 
 1. `identitycode.keystore`
 2. `keystore.properties`：
@@ -57,7 +57,6 @@ keyPassword=<你的密码>
 1. 安装 APK。
 2. 手机上保持拼多多 / 淘宝为已登录状态。
 3. 点击卡片进入实时身份码页面；长按卡片复制原始链接。
-4. 站点编号在 `MainActivity` 中修改（`station_code` / 站点链接）。
 
 ## 实现说明
 
@@ -76,7 +75,6 @@ app/src/main/res/layout/activity_main.xml                    首页布局
 app/src/main/res/drawable/                                   卡片与标题装饰背景
 app/src/main/AndroidManifest.xml                             <queries> 声明拼多多 / 淘宝等目标应用
 docs/screenshot.jpg                                          首页截图
-releases/ExpressIdentify-1.0.8.apk                           已签名的发布 APK，直接安装
 local-repo/                                                  离线构建用的 Maven 占位构件
 ```
 
